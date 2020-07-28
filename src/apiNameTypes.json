@@ -1,0 +1,7 @@
+{
+    "people":"name",
+    "films":"title",
+    "starships":"name",
+    "planets":"name",
+    "vehicles":"name"
+}

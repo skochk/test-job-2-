@@ -1,0 +1,24 @@
+
+.sidebar{
+    text-decoration: none;
+    width: 150px;
+    height: 100vh;
+    background-color: #e6f4ff;
+    padding-top: 50px;
+    .menuElement{
+        height: 30px;
+        width: 120px;
+        text-align: center;
+        padding-bottom: 10px;
+        background-color: #bfe3ff;
+        font-size: 1.5em;
+        font-weight: bold;
+        width: 100%;
+        color: #17588a;
+        text-decoration: none;
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        margin-bottom: 10px;
+    }
+}
+
