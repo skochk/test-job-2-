@@ -5,12 +5,11 @@ import styles from "./styles.module.scss";
 import {Link} from 'react-router-dom';
 
 const SmallGrid = (props)=>{
-    console.log('el in gril',props);
+    console.log(props)
     return <div>
             <h1>{props.name}</h1>
             {props.elements && props.elements.map((el, idx)=>{
-                console.log(el.url.substr(-3).replace(/\//g,''));
-                return <Link className={styles.links} to={`/a/a`}>{el}</Link>
+                return <Link to={`${el.url.split("http://swapi.dev/api")[1]}`} className={styles.links}>{el.name}</Link>
             })}
           </div> 
 };
@@ -45,7 +44,6 @@ function UniPage({match}) {
         }
     } 
 
-
     useEffect(() => {
         getData()
     }, []);
@@ -53,18 +51,22 @@ function UniPage({match}) {
     return (
         <div className={styles.container}>
             {
-                data && Object.keys(data).map(key=>{
-                    if(Array.isArray(data[key])){
-                        return <SmallGrid name={key} elements={data[key]}/>;
-                    }else{
-                        return ( 
-                        <div className={styles.row} key={key}>
-                            <h3>{key}</h3>
-                            <p>{data[key]}</p>
-                        </div>
-                        )
-                    }
-                })
+                Object.keys(data).length !=0 ? 
+                <>{
+                    Object.keys(data).map(key=>{
+                        if(Array.isArray(data[key])){
+                            return <SmallGrid name={key} url={match} elements={data[key]}/>;
+                        }else{
+                            return ( 
+                            <div className={styles.row} key={key}>
+                                <h3>{key}</h3>
+                                <p>{data[key]}</p>
+                            </div>
+                            )
+                        }
+                    })
+                }</> 
+                : <div>Loading...</div>
             }
         </div>
     ) 

@@ -20,23 +20,43 @@ function Page({match}) {
     },[])
 
     useEffect(()=>{
-        let tempArray = constData.filter(element=>{
-            if(element['name'].toLowerCase().indexOf(search.toLowerCase()) == -1){
-                return false;
-            }
-            return true;
-        })
-        setData(tempArray)
+        if(match.url = '/films'){
+            let tempArray = constData.filter(element=>{
+                if(element['title'].toLowerCase().indexOf(search.toLowerCase()) == -1){
+                    return false;
+                }
+                return true;
+            })
+            setData(tempArray);
+        }else{
+            let tempArray = constData.filter(element=>{
+                if(element['name'].toLowerCase().indexOf(search.toLowerCase()) == -1){
+                    return false;
+                }
+                return true;
+            })
+            setData(tempArray);
+        }
+        
     },[search]);
 
     useEffect(()=>{
         let tempArray=[];
-        if(alphabeticalSort == true){
-            tempArray = data.sort((a,b)=>a.name.localeCompare(b.name));
+        if(match.url = '/films'){
+            if(alphabeticalSort == true){
+                tempArray = data.sort((a,b)=>a.title.localeCompare(b.name));
+            }else{
+                tempArray = data.sort((a,b)=>b.title.localeCompare(a.name));
+            }
+            setData(tempArray);
         }else{
-            tempArray = data.sort((a,b)=>b.name.localeCompare(a.name));
+            if(alphabeticalSort == true){
+                tempArray = data.sort((a,b)=>a.name.localeCompare(b.name));
+            }else{
+                tempArray = data.sort((a,b)=>b.name.localeCompare(a.name));
+            }
+            setData(tempArray);
         }
-        setData(tempArray)
     },[alphabeticalSort])
 
     return (
